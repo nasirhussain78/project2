@@ -18,7 +18,7 @@ const createCollege = async (req, res) => {
     }
     
 
-//abbrebeation is required
+    //abbrebeation is required
     const input1 = isValid(data.name);
     if (!input1) {
       return res.status(400).send({ status: false, msg: " college Name is required" });
@@ -31,20 +31,20 @@ const createCollege = async (req, res) => {
     if (length> 1) {
       return res.status(400).send({status: false,msg: "Abbreviated college name should be in a single word",});
     }
-// colege full name is required
+    // colege full name is required
     const req0 = isValid(fullName);
     if (!req0) {return res.status(400).send({ status: false, msg: " college FullName is required" });
     }
-//logolink is required
+    //logolink is required
     const req1 = isValid(data.logoLink);
     if (!req1) { return res.status(400).send({ status: false, msg: " Logolink is required" });
     }
-//college already exist with this abbrebeaiation
+    //college already exist with this abbrebeaiation
     const isNameAlreadyUsed = await collegeModel.findOne({ name:name });
     if (isNameAlreadyUsed) {
       return res.status(400).send({ status: false, msg: `${name} college already exist with this abbrebeaiation name` });
     }
-//college already exist with this name
+    //college already exist with this name
     const isFullreadyUsed = await collegeModel.findOne({ fullName });
     if (isFullreadyUsed) {
       return res.status(400).send({ status: false, msg: `${fullName} college already exist with this name` });
